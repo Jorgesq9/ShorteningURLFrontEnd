@@ -1,0 +1,66 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
+  background-color: #242424;
+}
+h1 {
+  color: white;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#fullUrl {
+  width: 300px;
+  margin-right: 10%;
+}
+
+#customShortId {
+  width: 300px;
+}
+.button {
+  background-color: green;
+  border: 2px white solid;
+  margin-top: 45px;
+  margin-left: 41%;
+}
+
+.my-custom-table {
+  background-color: #f8f9fa;
+
+  border-radius: 0.25rem;
+}
+
+.my-custom-table th {
+  background-color: #242424;
+  color: white;
+}
+
+.my-custom-table th:first-child {
+  text-align: left;
+  padding-left: 15%;
+}
+
+.my-custom-table th:last-child {
+  text-align: right;
+  padding-right: 15%;
+}
