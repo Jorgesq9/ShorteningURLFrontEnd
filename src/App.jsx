@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 function Index() {
   const [shortUrls, setShortUrls] = useState([]);
@@ -7,28 +8,31 @@ function Index() {
   const [customShortId, setCustomShortId] = useState("");
 
   useEffect(() => {
-    fetch("/shortUrls")
-      .then((response) => response.json())
-      .then((data) => setShortUrls(data))
-      .catch((error) => console.error("Error fetching short URLs:", error));
+    axios
+      .get("/shortUrls")
+      .then((response) => {
+        setShortUrls(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching short URLs:", error);
+      });
   }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("/shortUrls", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fullUrl, customShortId }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setShortUrls((prev) => [data, ...prev]);
-        setFullUrl("");
-        setCustomShortId("");
+    axios
+      .post("http://localhost:5000/shortUrls", {
+        fullUrl, // Asegúrate de que estas variables estén definidas en el contexto o sean recogidas del estado/formulario
+        customShortId,
       })
-      .catch((error) => console.error("Error creating short URL:", error));
+      .then((response) => {
+        // Lógica para manejar la respuesta, por ejemplo actualizar el estado con la nueva URL corta
+        setShortUrls([...shortUrls, response.data]);
+        console.log("URL Shortened:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error creating short URL:", error);
+      });
   };
 
   return (
@@ -71,7 +75,9 @@ function Index() {
                 <a href={shortUrl.full}>{shortUrl.full}</a>
               </td>
               <td>
-                <a href={`/${shortUrl.short}`}>{shortUrl.short}</a>
+                <a href={`http://localhost:5000/${shortUrl.short}`}>
+                  {shortUrl.short}
+                </a>
               </td>
             </tr>
           ))}
