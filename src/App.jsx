@@ -78,11 +78,7 @@ function Index() {
                 <a href={shortUrl.full}>{shortUrl.full}</a>
               </td>
               <td>
-                <a
-                  href={`${API_URL}${shortUrl.short} || http://localhost:5000/${shortUrl.short}`}
-                >
-                  {shortUrl.short}
-                </a>
+                <a href={`${API_URL}/${shortUrl.short}`}>{shortUrl.short}</a>
               </td>
             </tr>
           ))}
