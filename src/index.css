@@ -45,9 +45,13 @@ h1 {
 }
 
 .my-custom-table {
-  background-color: #f8f9fa;
+  background-color: #242424;
 
   border-radius: 0.25rem;
+}
+
+.my-custom-table tbody {
+  background-color: #242424;
 }
 
 .my-custom-table th {
@@ -57,10 +61,16 @@ h1 {
 
 .my-custom-table th:first-child {
   text-align: left;
+  background-color: #242424;
   padding-left: 15%;
 }
 
 .my-custom-table th:last-child {
   text-align: right;
+  background-color: #242424;
   padding-right: 15%;
+}
+.background-table {
+  border: 2px red solid;
+  background-color: #242424;
 }

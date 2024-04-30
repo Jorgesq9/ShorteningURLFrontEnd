@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+console.log("testing my .env", API_URL);
+
 function Index() {
   const [shortUrls, setShortUrls] = useState([]);
   const [fullUrl, setFullUrl] = useState("");
