@@ -24,7 +24,7 @@ function Index() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:5000/shortUrls", {
+      .post(`${API_URL}/shortUrls`, {
         fullUrl, // Asegúrate de que estas variables estén definidas en el contexto o sean recogidas del estado/formulario
         customShortId,
       })
@@ -78,7 +78,9 @@ function Index() {
                 <a href={shortUrl.full}>{shortUrl.full}</a>
               </td>
               <td>
-                <a href={`http://localhost:5000/${shortUrl.short}`}>
+                <a
+                  href={`${API_URL}${shortUrl.short} || http://localhost:5000/${shortUrl.short}`}
+                >
                   {shortUrl.short}
                 </a>
               </td>
