@@ -26,6 +26,7 @@ function Index() {
     axios
       .get(`${apiUrl}`)
       .then((response) => {
+        console.log(response.data);
         setShortUrls(response.data);
       })
       .catch((error) => {
@@ -41,7 +42,6 @@ function Index() {
         customShortId,
       })
       .then((response) => {
-        // Lógica para manejar la respuesta, por ejemplo actualizar el estado con la nueva URL corta
         setShortUrls([...shortUrls, response.data]);
         console.log("URL Shortened:", response.data);
       })
@@ -80,17 +80,23 @@ function Index() {
           <tr>
             <th>Full URL</th>
             <th>Short URL</th>
+            <th>CLicks</th>
           </tr>
         </thead>
         <tbody>
           {shortUrls.map((shortUrl) => (
             <tr key={shortUrl._id}>
               <td>
-                <a href={shortUrl.full}>{shortUrl.full}</a>
+                <a href={shortUrl.full} target="_blank">
+                  {shortUrl.full}
+                </a>
               </td>
               <td>
-                <a href={`${apiUrl}/${shortUrl.short}`}>{shortUrl.short}</a>
+                <a href={`${apiUrl}/${shortUrl.short}`} target="_blank">
+                  {shortUrl.short}
+                </a>
               </td>
+              <td>{shortUrl.clicks}</td>
               <td>
                 <button
                   onClick={() => deleteUrl(shortUrl._id)}
