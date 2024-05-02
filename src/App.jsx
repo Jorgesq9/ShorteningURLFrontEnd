@@ -50,20 +50,6 @@ function Index() {
       });
   };
 
-  const handleLinkClick = async (shortUrl) => {
-    try {
-      const updatedUrl = await axios.get(`${apiUrl}/${shortUrl.short}`);
-      const updatedUrls = shortUrls.map((url) =>
-        url._id === shortUrl._id ? { ...url, clicks: url.clicks + 1 } : url
-      );
-      setShortUrls(updatedUrls);
-
-      window.open(shortUrl.full, "_blank");
-    } catch (error) {
-      console.error("Error handling click:", error);
-    }
-  };
-
   return (
     <div className="container">
       <h1>URL Shortener</h1>
@@ -106,13 +92,7 @@ function Index() {
                 </a>
               </td>
               <td>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(shortUrl);
-                  }}
-                >
+                <a href={`${apiUrl}/${shortUrl.short}`} target="_blank">
                   {shortUrl.short}
                 </a>
               </td>
