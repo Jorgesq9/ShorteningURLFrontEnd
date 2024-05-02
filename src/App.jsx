@@ -92,7 +92,13 @@ function Index() {
                 </a>
               </td>
               <td>
-                <a href={`${apiUrl}/${shortUrl.short}`} target="_blank">
+                <a
+                  href={`${apiUrl}/${shortUrl.short}`}
+                  target="_blank"
+                  onClick={() => {
+                    window.location.reload();
+                  }}
+                >
                   {shortUrl.short}
                 </a>
               </td>
