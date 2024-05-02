@@ -8,6 +8,19 @@ function Index() {
   const [shortUrls, setShortUrls] = useState([]);
   const [fullUrl, setFullUrl] = useState("");
   const [customShortId, setCustomShortId] = useState("");
+  const [urls, setUrls] = useState([]);
+
+  const deleteUrl = async (id) => {
+    try {
+      const response = await axios.delete(`${apiUrl}/shortUrls/${id}`);
+      console.log(response.data);
+
+      const updatedUrls = urls.filter((url) => url._id !== id);
+      setUrls(updatedUrls);
+    } catch (error) {
+      console.error("Error deleting URL:", error);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -77,6 +90,14 @@ function Index() {
               </td>
               <td>
                 <a href={`${apiUrl}/${shortUrl.short}`}>{shortUrl.short}</a>
+              </td>
+              <td>
+                <button
+                  onClick={() => deleteUrl(shortUrl._id)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
