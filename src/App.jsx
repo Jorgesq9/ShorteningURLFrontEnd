@@ -16,7 +16,7 @@ function Index() {
       console.log(response.data);
 
       const updatedUrls = urls.filter((url) => url._id !== id);
-      setUrls(updatedUrls);
+      setShortUrls(updatedUrls);
     } catch (error) {
       console.error("Error deleting URL:", error);
     }
