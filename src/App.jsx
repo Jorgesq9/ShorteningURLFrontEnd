@@ -50,6 +50,15 @@ function Index() {
       });
   };
 
+  const handleLinkClick = async (shortUrl) => {
+    const updatedUrls = shortUrls.map((url) =>
+      url._id === shortUrl._id ? { ...url, clicks: url.clicks + 1 } : url
+    );
+    setShortUrls(updatedUrls);
+
+    window.open(`${apiUrl}/${shortUrl.short}`, "_blank");
+  };
+
   return (
     <div className="container">
       <h1>URL Shortener</h1>
@@ -93,12 +102,10 @@ function Index() {
               </td>
               <td>
                 <a
-                  href={`${apiUrl}/${shortUrl.short}`}
-                  target="_blank"
-                  onClick={() => {
-                    window.setTimeout(() => {
-                      window.location.reload();
-                    }, 100);
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(url);
                   }}
                 >
                   {shortUrl.short}
