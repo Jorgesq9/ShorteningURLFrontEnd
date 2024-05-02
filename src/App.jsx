@@ -11,7 +11,7 @@ function Index() {
 
   useEffect(() => {
     axios
-      .get("/shortUrls")
+      .get(`${apiUrl}/shortUrls`)
       .then((response) => {
         setShortUrls(response.data);
       })
