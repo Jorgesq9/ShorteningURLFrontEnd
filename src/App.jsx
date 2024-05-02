@@ -51,8 +51,10 @@ function Index() {
   };
 
   const handleLinkClick = async (shortUrl) => {
-    const updatedUrls = shortUrls.map((url) =>
-      url._id === shortUrl._id ? { ...url, clicks: url.clicks + 1 } : url
+    const updatedUrls = shortUrls.map((shortUrl) =>
+      url._id === shortUrl._id
+        ? { ...shortUrl, clicks: shortUrl.clicks + 1 }
+        : url
     );
     setShortUrls(updatedUrls);
 
@@ -105,7 +107,7 @@ function Index() {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleLinkClick(url);
+                    handleLinkClick(shortUrls);
                   }}
                 >
                   {shortUrl.short}
