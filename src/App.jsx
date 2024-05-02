@@ -28,6 +28,7 @@ function Index() {
       .then((response) => {
         console.log(response.data);
         setShortUrls(response.data);
+        setShortUrls(updatedUrls);
       })
       .catch((error) => {
         console.error("Error fetching short URLs:", error);
@@ -38,7 +39,7 @@ function Index() {
     event.preventDefault();
     axios
       .post(`${apiUrl}/shortUrls`, {
-        fullUrl, // Asegúrate de que estas variables estén definidas en el contexto o sean recogidas del estado/formulario
+        fullUrl,
         customShortId,
       })
       .then((response) => {
