@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-console.log("testing my .env", API_URL);
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Index() {
   const [shortUrls, setShortUrls] = useState([]);
@@ -24,7 +23,7 @@ function Index() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`${API_URL}/shortUrls`, {
+      .post(`${apiUrl}/shortUrls`, {
         fullUrl, // Asegúrate de que estas variables estén definidas en el contexto o sean recogidas del estado/formulario
         customShortId,
       })
@@ -63,7 +62,6 @@ function Index() {
           Shortener
         </button>
       </form>
-
       <table className="table  my-custom-table">
         <thead>
           <tr>
@@ -78,7 +76,7 @@ function Index() {
                 <a href={shortUrl.full}>{shortUrl.full}</a>
               </td>
               <td>
-                <a href={`${API_URL}/${shortUrl.short}`}>{shortUrl.short}</a>
+                <a href={`${apiUrl}/${shortUrl.short}`}>{shortUrl.short}</a>
               </td>
             </tr>
           ))}
@@ -87,5 +85,4 @@ function Index() {
     </div>
   );
 }
-
 export default Index;
