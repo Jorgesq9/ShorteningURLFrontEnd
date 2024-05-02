@@ -96,7 +96,9 @@ function Index() {
                   href={`${apiUrl}/${shortUrl.short}`}
                   target="_blank"
                   onClick={() => {
-                    window.location.reload();
+                    window.setTimeout(() => {
+                      window.location.reload();
+                    }, 100);
                   }}
                 >
                   {shortUrl.short}
