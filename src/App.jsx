@@ -28,7 +28,6 @@ function Index() {
       .then((response) => {
         console.log(response.data);
         setShortUrls(response.data);
-        setShortUrls(updatedUrls);
       })
       .catch((error) => {
         console.error("Error fetching short URLs:", error);
@@ -49,6 +48,20 @@ function Index() {
       .catch((error) => {
         console.error("Error creating short URL:", error);
       });
+  };
+
+  const handleLinkClick = async (shortUrl) => {
+    try {
+      const updatedUrl = await axios.get(`${apiUrl}/${shortUrl.short}`);
+      const updatedUrls = shortUrls.map((url) =>
+        url._id === shortUrl._id ? { ...url, clicks: url.clicks + 1 } : url
+      );
+      setShortUrls(updatedUrls);
+
+      window.open(shortUrl.full, "_blank");
+    } catch (error) {
+      console.error("Error handling click:", error);
+    }
   };
 
   return (
@@ -93,7 +106,13 @@ function Index() {
                 </a>
               </td>
               <td>
-                <a href={`${apiUrl}/${shortUrl.short}`} target="_blank">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(shortUrl);
+                  }}
+                >
                   {shortUrl.short}
                 </a>
               </td>
