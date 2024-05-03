@@ -1,27 +1,11 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 body {
   display: flex;
   justify-content: center;
   margin-top: 300px;
-  background-color: #242424;
+  background-image: linear-gradient(to bottom, #333232, #056a77);
+  height: 665px;
 }
-h1 {
-  color: white;
-}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -31,46 +15,68 @@ h1 {
 
 #fullUrl {
   width: 300px;
-  margin-right: 10%;
+  margin-right: 11%;
 }
 
 #customShortId {
   width: 300px;
 }
+a {
+  color: wheat;
+}
+.URL {
+  background-image: linear-gradient(to right, #333232, #056a77);
+}
+.customizeURL {
+  background-image: linear-gradient(to right, #333232, #056a77);
+}
 .button {
-  background-color: green;
-  border: 2px white solid;
+  background-image: linear-gradient(to right, #333232, #056a77);
+  color: wheat;
   margin-top: 45px;
-  margin-left: 41%;
+  margin-left: 43%;
 }
-
 .my-custom-table {
-  background-color: #242424;
-
-  border-radius: 0.25rem;
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: 21%;
 }
-
-.my-custom-table tbody {
-  background-color: #242424;
-}
-
 .my-custom-table th {
-  background-color: #242424;
-  color: white;
+  background-image: linear-gradient(to bottom, #01535e, #005a66);
+  color: wheat;
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
 }
 
-.my-custom-table th:first-child {
-  text-align: left;
-  background-color: #242424;
-  padding-left: 15%;
+.my-custom-table td {
+  background-color: inherit;
+  color: wheat;
+  text-align: center;
+  width: 350px;
+  padding: 10px;
+  vertical-align: middle;
 }
 
-.my-custom-table th:last-child {
-  text-align: right;
-  background-color: #242424;
-  padding-right: 15%;
+.my-custom-table thead tr {
+  background-color: #f0f0f0;
+  color: black;
 }
-.background-table {
-  border: 2px red solid;
-  background-color: #242424;
+
+.my-custom-table td:last-child {
+  border-bottom: none;
+}
+
+.delete {
+  cursor: pointer;
+  width: 50px;
+  height: auto;
+  margin-right: 90%;
+}
+
+.URLogo {
+  margin-top: -220px;
+  margin-bottom: 50px;
+  width: 300px;
+  height: auto;
 }

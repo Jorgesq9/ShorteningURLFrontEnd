@@ -8,16 +8,14 @@ function Index() {
   const [shortUrls, setShortUrls] = useState([]);
   const [fullUrl, setFullUrl] = useState("");
   const [customShortId, setCustomShortId] = useState("");
-  const [urls, setUrls] = useState([]);
 
   const deleteUrl = async (id) => {
     try {
       const response = await axios.delete(`${apiUrl}/shortUrls/${id}`);
       console.log(response.data);
 
-      // Utiliza shortUrls para filtrar y actualizar, en lugar de urls
       const updatedUrls = shortUrls.filter((url) => url._id !== id);
-      setShortUrls(updatedUrls); // Actualiza el estado con los enlaces filtrados
+      setShortUrls(updatedUrls);
     } catch (error) {
       console.error("Error deleting URL:", error);
     }
@@ -45,6 +43,8 @@ function Index() {
       .then((response) => {
         setShortUrls([...shortUrls, response.data]);
         console.log("URL Shortened:", response.data);
+        setFullUrl("");
+        setCustomShortId("");
       })
       .catch((error) => {
         console.error("Error creating short URL:", error);
@@ -53,9 +53,15 @@ function Index() {
 
   return (
     <div className="container">
-      <h1>URL Shortener</h1>
+      <img
+        className="URLogo"
+        src="../public/URL1.png"
+        alt="Delete"
+        onClick={() => deleteUrl(shortUrl._id)}
+      />
       <form onSubmit={handleSubmit} className="my-4 form-inline">
         <input
+          className="URL"
           required
           placeholder="Url"
           type="url"
@@ -65,6 +71,7 @@ function Index() {
           id="fullUrl"
         />
         <input
+          className="customizeURL"
           placeholder="customize your URL"
           type="text"
           value={customShortId}
@@ -107,12 +114,12 @@ function Index() {
               </td>
               <td>{shortUrl.clicks}</td>
               <td>
-                <button
+                <img
+                  className="delete"
+                  src="../public/delete.png"
+                  alt="Delete"
                   onClick={() => deleteUrl(shortUrl._id)}
-                  className="btn btn-danger"
-                >
-                  Delete
-                </button>
+                />
               </td>
             </tr>
           ))}
