@@ -15,8 +15,9 @@ function Index() {
       const response = await axios.delete(`${apiUrl}/shortUrls/${id}`);
       console.log(response.data);
 
-      const updatedUrls = urls.filter((url) => url._id !== id);
-      setShortUrls(updatedUrls);
+      // Utiliza shortUrls para filtrar y actualizar, en lugar de urls
+      const updatedUrls = shortUrls.filter((url) => url._id !== id);
+      setShortUrls(updatedUrls); // Actualiza el estado con los enlaces filtrados
     } catch (error) {
       console.error("Error deleting URL:", error);
     }
