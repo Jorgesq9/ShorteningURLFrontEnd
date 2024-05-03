@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import trash from "../public/delete.png";
+import logo from "../public/URL1.png";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -55,7 +57,7 @@ function Index() {
     <div className="container">
       <img
         className="URLogo"
-        src="../public/URL1.png"
+        src={logo}
         alt="Delete"
         onClick={() => deleteUrl(shortUrl._id)}
       />
@@ -116,7 +118,7 @@ function Index() {
               <td>
                 <img
                   className="delete"
-                  src="../public/delete.png"
+                  src={trash}
                   alt="Delete"
                   onClick={() => deleteUrl(shortUrl._id)}
                 />
