@@ -85,46 +85,56 @@ function Index() {
           Shortener
         </button>
       </form>
-      <table className="table  my-custom-table">
+      <table
+        className={`table my-custom-table ${
+          shortUrls.length ? "" : "empty-table"
+        }`}
+      >
         <thead>
           <tr>
             <th>Full URL</th>
             <th>Short URL</th>
-            <th>CLicks</th>
+            <th>Clicks</th>
           </tr>
         </thead>
         <tbody>
-          {shortUrls.map((shortUrl) => (
-            <tr key={shortUrl._id}>
-              <td>
-                <a href={shortUrl.full} target="_blank">
-                  {shortUrl.full}
-                </a>
-              </td>
-              <td>
-                <a
-                  href={`${apiUrl}/${shortUrl.short}`}
-                  target="_blank"
-                  onClick={() => {
-                    window.setTimeout(() => {
-                      window.location.reload();
-                    }, 100);
-                  }}
-                >
-                  {shortUrl.short}
-                </a>
-              </td>
-              <td>{shortUrl.clicks}</td>
-              <td>
-                <img
-                  className="delete"
-                  src={trash}
-                  alt="Delete"
-                  onClick={() => deleteUrl(shortUrl._id)}
-                />
-              </td>
+          {shortUrls.length > 0 ? (
+            shortUrls.map((shortUrl) => (
+              <tr key={shortUrl._id}>
+                <td>
+                  <a href={shortUrl.full} target="_blank">
+                    {shortUrl.full}
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href={`${apiUrl}/${shortUrl.short}`}
+                    target="_blank"
+                    onClick={() => {
+                      window.setTimeout(() => {
+                        window.location.reload();
+                      }, 100);
+                    }}
+                  >
+                    {shortUrl.short}
+                  </a>
+                </td>
+                <td>{shortUrl.clicks}</td>
+                <td>
+                  <img
+                    className="delete"
+                    src={trash}
+                    alt="Delete"
+                    onClick={() => deleteUrl(shortUrl._id)}
+                  />
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3" style={{ textAlign: "center" }}></td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
